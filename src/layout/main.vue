@@ -1,6 +1,33 @@
 <template>
   <div class="x-main">
     websocket测试
+    <div class="x-room-list">
+      <div class="x-room-item">
+        <el-button @click="room1 = true">打开房间一</el-button>
+        <div v-show="room1" class="x-room-box">
+
+        </div>
+        <div>
+          <label>用户一</label><el-input></el-input><el-button>发送</el-button>
+        </div>
+        <el-button v-show="room1" @click="room1 = false">关闭</el-button>
+      </div>
+      <div class="x-room-item">
+        <el-button @click="room2 = true">打开房间二</el-button>
+        <div v-show="room2" class="">
+
+        </div>
+        <el-button v-show="room2" @click="room2 = false">关闭</el-button>
+      </div>
+      <div class="x-room-item">
+        <el-button @click="room3 = true">打开房间三</el-button>
+        <div v-show="room3" class="">
+
+        </div>
+        <el-button v-show="room3" @click="room3 = false">关闭</el-button>
+      </div>
+    </div>
+    
     <div class="x-websocket">
       <div class="x-socket-box">
         
@@ -11,12 +38,12 @@
         <el-button @click="sendMessage(3)">用户三</el-button>
         <el-button @click="sendMessage(4)">用户四</el-button>
       </div>
-      <div>
+      <!-- <div>
         <el-input v-show="user1In"></el-input><el-button>发送</el-button>
         <el-input v-show="user2In"></el-input><el-button>发送</el-button>
         <el-input v-show="user3In"></el-input><el-button>发送</el-button>
         <el-input v-show="user4In"></el-input><el-button>发送</el-button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -27,12 +54,12 @@ export default {
     return {
       text: {
         name: 'hello',
-        ws: null,
-        user1In: false,
-        user2In: false,
-        user3In: false,
-        user4In: false,
-      }
+        
+      },
+      ws: null,
+      room1: false,
+      room2: false,
+      room3: false,
     }
   },
   methods: {
@@ -115,6 +142,15 @@ export default {
 <style lang="scss" scoped>
   .x-main {
 
+  }
+  .x-room-list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .x-room-item {
+      width: 450px;
+    }
   }
   .x-websocket {
     width: 100%;
