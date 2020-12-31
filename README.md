@@ -24,3 +24,8 @@ npm run test
 ```
 npm run lint
 ```
+
+### ws server
+```
+npm start
+```
