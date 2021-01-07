@@ -1,7 +1,12 @@
 const Koa = require('koa');
 const koaBody = require('koa-body');
 const router = require('./server/router/router.js')
+const wss = require('./server/router/timeline.js')
+const chatWSS = require('./server/router/chat.js')
+// const timeline = require('./server/router/timeline.js')
 const serve = require('koa-static');
+
+// console.log(router)
 
 const app = new Koa();
 app.use(koaBody({

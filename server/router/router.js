@@ -1,63 +1,13 @@
 const router = require('koa-router')();
-const fs = require('fs');
-const WebSocketServer = require('ws').Server
 
-var stocks = {
-  "AAPL": 95.0,
-  "MSFT": 50.0,
-  "AMZN": 300.0,
-  "GOOG": 550.0,
-  "YHOO": 35.0
-}
-
-let _message = '欢迎'
-
-function randomInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-var stockUpdater;
-var randomStockUpdater = function() {
-  for (var symbol in stocks) {
-    if(stocks.hasOwnProperty(symbol)) {
-      var randomizedChange = randomInterval(-150, 150);
-      var floatChange = randomizedChange / 100;
-      stocks[symbol] += floatChange;
-    }
+router.post('/enterChat', async(ctx, next) => {
+  const params = ctx.request.body;
+  const room = { id: params.id }
+  ctx.body = {
+    code: 200
   }
-  var randomMSTime = randomInterval(500, 2500);
-  stockUpdater = setTimeout(function() {
-    randomStockUpdater();
-  }, randomMSTime);
-}
-randomStockUpdater();
-
-wss = new WebSocketServer({ port: 8181 });
-wss.on('connection', function (ws) {
-  var sendStockUpdates = function (ws) {
-    if (ws.readyState == 1) {
-      // var stocksObj = {}
-      // if (stocksObj.length !== 0) {
-        ws.send(_message)
-        // ws.send(JSON.stringify(stocks))  //需要将对象转成字符串。WebSocket只支持文本和二进制数据
-        // console.log("更新", JSON.stringify(stocks))
-        console.log("更新", _message)
-      // }
-    }
-  }
-  // sendStockUpdates(ws);
-  // var clientStockUpdater = setInterval(function () {
-  //   sendStockUpdates(ws);
-  // }, 1000);
-  ws.on('message', function (message) {
-    // var stockRequest = JSON.parse(message); //根据请求过来的数据来更新。
-    _message = message
-    // console.log("收到消息", stockRequest);
-    // clientStocks = stockRequest['stocks'];
-    sendStockUpdates(ws);
-  });
-  // ws.on('close', function() {
-  //   clearInterval(clientStockUpdater)
-  // })
+  console.log(1)
+  await next()
 })
 
 router.get('/test', async(ctx, next) => {

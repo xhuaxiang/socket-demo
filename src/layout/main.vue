@@ -1,7 +1,11 @@
 <template>
   <div class="x-main">
     websocket测试
-    <div class="x-room-list">
+    <div style="margin-top: 15px">
+      <router-view></router-view>
+    </div>
+    
+    <!-- <div class="x-room-list">
       <div class="x-room-item">
         <el-button @click="room1 = true">打开房间一</el-button>
         <div v-show="room1" class="x-room-box">
@@ -26,9 +30,8 @@
         </div>
         <el-button v-show="room3" @click="room3 = false">关闭</el-button>
       </div>
-    </div>
-    
-    <div class="x-websocket">
+    </div> -->
+    <!-- <div class="x-websocket">
       <div class="x-socket-box">
         
       </div>
@@ -38,13 +41,7 @@
         <el-button @click="sendMessage(3)">用户三</el-button>
         <el-button @click="sendMessage(4)">用户四</el-button>
       </div>
-      <!-- <div>
-        <el-input v-show="user1In"></el-input><el-button>发送</el-button>
-        <el-input v-show="user2In"></el-input><el-button>发送</el-button>
-        <el-input v-show="user3In"></el-input><el-button>发送</el-button>
-        <el-input v-show="user4In"></el-input><el-button>发送</el-button>
-      </div> -->
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -54,7 +51,6 @@ export default {
     return {
       text: {
         name: 'hello',
-        
       },
       ws: null,
       room1: false,
@@ -133,7 +129,7 @@ export default {
     }
   },
   mounted() {
-    this.initSocket()
+    // this.initSocket()
     // this.createSocket()
   }
 }
@@ -141,7 +137,11 @@ export default {
 
 <style lang="scss" scoped>
   .x-main {
-
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .x-room-list {
     width: 100%;

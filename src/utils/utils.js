@@ -162,6 +162,14 @@ export const throttle = (fn, wait) => {
 	}
 }
 
+export const isObject = (obj) => {
+  return obj !== null && typeof obj === 'object'
+}
+
+export const getType = (o) => {
+  return Object.prototype.toString.call(value).slice(8, -1)
+}
+
 
 
 
