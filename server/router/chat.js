@@ -46,7 +46,6 @@ function wsSend(client_uuid, message, type) {
           "message": message
         }))
       }
-      
     }
   }
 }

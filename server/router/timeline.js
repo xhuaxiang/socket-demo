@@ -8,7 +8,6 @@ var stocks = {
   "GOOG": 550.0,
   "YHOO": 35.0
 }
-
 var delay = 10000
 
 function randomInterval(min, max) {
@@ -54,7 +53,6 @@ wss.on('connection', function (ws) {
       console.log('hello')
     }, delay)
     console.log("收到消息", stockRequest);
-    clientStocks = stockRequest['stocks'];
     // sendStockUpdates(ws);
   })
 })
